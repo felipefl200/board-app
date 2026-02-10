@@ -1,4 +1,6 @@
-import { ArchiveIcon } from 'lucide-react'
+import { Card } from '@/components/card'
+import { Section } from '@/components/section'
+import { MessageCircleIcon, ThumbsUpIcon } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -6,24 +8,36 @@ export default function Home() {
       <div></div>
 
       <main className="grid flex-1 grid-cols-4 items-stretch gap-5">
-        <div className="bg-navy-800 border-navy-500 flex flex-col gap-1 rounded-xl border-[0.5px] pt-3">
-          {/* Backlog Header */}
-          <div className="flex items-center justify-between px-3">
-            <span className="bg-navy-700 flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs">
-              <ArchiveIcon className="size-3" />
-              Backlog
-            </span>
-
-            <span className="text-navy-200 text-xs">16</span>
-          </div>
-
-          {/* Backlog Content */}
-          <div className="flex flex-col gap-2.5 overflow-y-scroll p-3">
-            <div>card 1</div>
-            <div>card 2</div>
-            <div>card 3</div>
-          </div>
-        </div>
+        <Section.Root>
+          <Section.Header>
+            <Section.Title>Backlog</Section.Title>
+            <Section.IssueCount>2</Section.IssueCount>
+          </Section.Header>
+          <Section.Content>
+            <Card.Root href="/">
+              <Card.Header>
+                <Card.Number>ECO-002</Card.Number>
+                <Card.Title>Implementar cartão de crédito</Card.Title>
+              </Card.Header>
+              <Card.Footer>
+                <button
+                  type="button"
+                  className="text-navy-100 bg-navy-600 flex cursor-pointer items-center gap-2 rounded-lg px-2.5 py-1"
+                >
+                  <ThumbsUpIcon className="size-3" />
+                  <span className="text-sm">12</span>
+                </button>
+                <button
+                  type="button"
+                  className="text-navy-100 bg-navy-600 flex cursor-pointer items-center gap-2 rounded-lg px-2.5 py-1"
+                >
+                  <MessageCircleIcon className="size-3" />
+                  <span className="text-sm">6</span>
+                </button>
+              </Card.Footer>
+            </Card.Root>
+          </Section.Content>
+        </Section.Root>
       </main>
     </div>
   )
