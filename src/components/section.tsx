@@ -4,7 +4,10 @@ import { ComponentProps } from 'react'
 function SectionRoot({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
-      className={cn('bg-navy-800 border-navy-500 flex flex-col gap-1 rounded-xl border-[0.5px] pt-3', className)}
+      className={cn(
+        'bg-navy-800 border-navy-500 relative flex flex-col gap-1 overflow-hidden rounded-xl border-[0.5px] pt-3',
+        className
+      )}
       {...props}
     />
   )
@@ -25,7 +28,12 @@ function SectionIssueCount({ className, ...props }: ComponentProps<'span'>) {
 }
 
 function SectionContent({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('flex flex-col gap-2.5 overflow-y-auto p-3', className)} {...props} />
+  return (
+    <div
+      className={cn('navy-scrollbar absolute inset-0 top-13 flex flex-col gap-2.5 overflow-y-auto p-3 pr-2', className)}
+      {...props}
+    />
+  )
 }
 
 export const Section = {
