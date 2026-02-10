@@ -9,8 +9,6 @@ type BoardPageProps = {
 export default async function BoardPage({ searchParams }: BoardPageProps) {
   const { q } = await searchParams
 
-  console.log(q)
-
   return (
     <main className="grid flex-1 grid-cols-4 items-stretch gap-5">
       <Section.Root>
