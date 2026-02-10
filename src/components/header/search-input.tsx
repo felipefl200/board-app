@@ -2,8 +2,10 @@
 import { Input } from '@/components/input'
 import { SearchIcon } from 'lucide-react'
 import { debounce, parseAsString, useQueryState } from 'nuqs'
+import { usePathname } from 'next/navigation'
 
 export function SearchInput() {
+  const pathname = usePathname()
   const [search, setSearch] = useQueryState('q', parseAsString.withDefault('').withOptions({ shallow: false }))
 
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -11,6 +13,8 @@ export function SearchInput() {
       limitUrlUpdates: e.target.value.length > 2 ? debounce(500) : undefined
     })
   }
+
+  if (pathname !== '/') return null
   return (
     <div className="relative">
       <SearchIcon className="pointer-events-none absolute top-1/2 left-3 size-3.5 -translate-y-1/2" />
