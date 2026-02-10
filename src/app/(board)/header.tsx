@@ -1,6 +1,16 @@
-import { LogInIcon } from 'lucide-react'
+'use client'
+import { Input } from '@/components/input'
+import { LogInIcon, SearchIcon } from 'lucide-react'
+import { debounce, parseAsString, useQueryState } from 'nuqs'
 
 export function Header() {
+  const [search, setSearch] = useQueryState('q', parseAsString.withDefault(''))
+
+  function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearch(e.target.value, {
+      limitUrlUpdates: e.target.value.length > 2 ? debounce(500) : undefined
+    })
+  }
   return (
     <div className="mx-auto flex w-full max-w-[900px] items-center justify-between">
       <div className="space-y-1">
@@ -8,7 +18,10 @@ export function Header() {
         <p className="text-navy-100 text-sm">Follow the development of our entire platform</p>
       </div>
       <div className="flex items-center gap-4">
-        <div className="relative"></div>
+        <div className="relative">
+          <SearchIcon className="pointer-events-none absolute top-1/2 left-3 size-3.5 -translate-y-1/2" />
+          <Input value={search} onChange={handleSearchChange} placeholder="Search" className="w-[270px] pl-10" />
+        </div>
         <button className="bg-navy-700 border-navy-500 hover:bg-navy-600 flex size-8 cursor-pointer items-center justify-center rounded-full border-2 transition-colors duration-150">
           <LogInIcon className="text-navy-200 size-3.5" />
         </button>

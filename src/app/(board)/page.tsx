@@ -3,7 +3,14 @@ import { Card } from '@/components/card'
 import { Section } from '@/components/section'
 import { MessageCircleIcon, ThumbsUpIcon } from 'lucide-react'
 
-export default function Home() {
+type BoardPageProps = {
+  searchParams: Promise<{ q?: string }>
+}
+export default async function BoardPage({ searchParams }: BoardPageProps) {
+  const { q } = await searchParams
+
+  console.log(q)
+
   return (
     <main className="grid flex-1 grid-cols-4 items-stretch gap-5">
       <Section.Root>

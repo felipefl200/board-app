@@ -25,7 +25,7 @@ function SectionIssueCount({ className, ...props }: ComponentProps<'span'>) {
 }
 
 function SectionContent({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('flex flex-col gap-2.5 overflow-y-scroll p-3', className)} {...props} />
+  return <div className={cn('flex flex-col gap-2.5 overflow-y-auto p-3', className)} {...props} />
 }
 
 export const Section = {
