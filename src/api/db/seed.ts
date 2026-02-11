@@ -93,7 +93,7 @@ async function main() {
       .insert(issues)
       .values({
         title: randomTitle,
-        description: faker.lorem.paragraph(),
+        description: faker.lorem.paragraphs({ min: 1, max: 5 }),
         status: randomStatus,
         likes: randomLikes
       })

@@ -5,10 +5,10 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Product Roadmap',
-    default: 'Product Roadmap'
+    template: '%s | Gestão do Projeto',
+    default: 'Gestão do Projeto'
   },
-  description: 'Follow the development progress of our entire platform'
+  description: 'Acompanhe o desenvolvimento de toda a nossa plataforma'
 }
 
 const interFont = Inter({ subsets: ['latin'] })
