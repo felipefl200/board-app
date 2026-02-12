@@ -71,7 +71,11 @@ export const updateIssue = new OpenAPIHono().openapi(route, async c => {
   const { id } = c.req.valid('param')
   const body = c.req.valid('json')
 
-  const [issue] = await db.update(issues).set(body).where(eq(issues.id, id)).returning()
+  const [issue] = await db
+    .update(issues)
+    .set(body)
+    .where(eq(issues.id, id))
+    .returning()
 
   if (!issue) {
     return c.json(

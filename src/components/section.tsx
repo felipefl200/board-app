@@ -14,12 +14,23 @@ function SectionRoot({ className, ...props }: ComponentProps<'div'>) {
 }
 
 function SectionHeader({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('flex items-center justify-between px-3', className)} {...props} />
+  return (
+    <div
+      className={cn('flex items-center justify-between px-3', className)}
+      {...props}
+    />
+  )
 }
 
 function SectionTitle({ className, ...props }: ComponentProps<'span'>) {
   return (
-    <span className={cn('bg-navy-700 flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs', className)} {...props} />
+    <span
+      className={cn(
+        'bg-navy-700 flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs',
+        className
+      )}
+      {...props}
+    />
   )
 }
 
@@ -30,7 +41,10 @@ function SectionIssueCount({ className, ...props }: ComponentProps<'span'>) {
 function SectionContent({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
-      className={cn('navy-scrollbar absolute inset-0 top-13 flex flex-col gap-2.5 overflow-y-auto p-3 pr-2', className)}
+      className={cn(
+        'navy-scrollbar absolute inset-0 top-13 flex flex-col gap-2.5 overflow-y-auto p-3 pr-2',
+        className
+      )}
       {...props}
     />
   )

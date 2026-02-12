@@ -72,7 +72,10 @@ export const deleteComment = app.openapi(route, async c => {
   const user = c.get('user')
 
   // Check if comment exists
-  const [existingComment] = await db.select().from(comments).where(eq(comments.id, commentId))
+  const [existingComment] = await db
+    .select()
+    .from(comments)
+    .where(eq(comments.id, commentId))
 
   if (!existingComment) {
     return c.json(
@@ -85,7 +88,10 @@ export const deleteComment = app.openapi(route, async c => {
   }
 
   // Check if user is the author
-  const [author] = await db.select().from(users).where(eq(users.email, user!.email))
+  const [author] = await db
+    .select()
+    .from(users)
+    .where(eq(users.email, user!.email))
 
   if (existingComment.authorName !== author.name) {
     return c.json(

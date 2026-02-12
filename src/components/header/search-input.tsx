@@ -6,7 +6,10 @@ import { usePathname } from 'next/navigation'
 
 export function SearchInput() {
   const pathname = usePathname()
-  const [search, setSearch] = useQueryState('q', parseAsString.withDefault('').withOptions({ shallow: false }))
+  const [search, setSearch] = useQueryState(
+    'q',
+    parseAsString.withDefault('').withOptions({ shallow: false })
+  )
 
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value, {

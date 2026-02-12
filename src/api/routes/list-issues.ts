@@ -3,7 +3,12 @@ import { eq, ilike } from 'drizzle-orm'
 import { db } from '../db'
 import { comments, issues } from '../db/schema'
 
-export const IssueStatusSchema = z.enum(['backlog', 'todo', 'in_progress', 'done'])
+export const IssueStatusSchema = z.enum([
+  'backlog',
+  'todo',
+  'in_progress',
+  'done'
+])
 
 export const IssueCardSchema = z.object({
   id: z.string(),
@@ -59,7 +64,10 @@ export const listIssues = new OpenAPIHono().openapi(route, async c => {
   // Get comment counts for all issues
   const issuesWithCounts = await Promise.all(
     allIssues.map(async issue => {
-      const commentCount = await db.$count(comments, eq(comments.issueId, issue.id))
+      const commentCount = await db.$count(
+        comments,
+        eq(comments.issueId, issue.id)
+      )
       return {
         id: issue.id,
         issueNumber: issue.issueNumber,
@@ -73,7 +81,9 @@ export const listIssues = new OpenAPIHono().openapi(route, async c => {
   const grouped = {
     backlog: issuesWithCounts.filter(issue => issue.status === 'backlog'),
     todo: issuesWithCounts.filter(issue => issue.status === 'todo'),
-    in_progress: issuesWithCounts.filter(issue => issue.status === 'in_progress'),
+    in_progress: issuesWithCounts.filter(
+      issue => issue.status === 'in_progress'
+    ),
     done: issuesWithCounts.filter(issue => issue.status === 'done')
   }
 

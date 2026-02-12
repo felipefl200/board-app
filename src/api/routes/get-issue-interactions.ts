@@ -10,9 +10,13 @@ const route = createRoute({
   path: '/issues/interactions',
   request: {
     query: z.object({
-      issueIds: z.string().describe('Comma-separated list of issue IDs').openapi({
-        example: '550e8400-e29b-41d4-a716-446655440000,660e8400-e29b-41d4-a716-446655440001'
-      })
+      issueIds: z
+        .string()
+        .describe('Comma-separated list of issue IDs')
+        .openapi({
+          example:
+            '550e8400-e29b-41d4-a716-446655440000,660e8400-e29b-41d4-a716-446655440001'
+        })
     })
   },
   responses: {
@@ -57,7 +61,12 @@ export const getIssueInteractions = new OpenAPIHono<{
     const likes = await db
       .select({ issueId: issueLikes.issueId })
       .from(issueLikes)
-      .where(and(eq(issueLikes.userId, user.id), inArray(issueLikes.issueId, issueIdArray)))
+      .where(
+        and(
+          eq(issueLikes.userId, user.id),
+          inArray(issueLikes.issueId, issueIdArray)
+        )
+      )
 
     userLikes = likes.map(like => like.issueId)
   }

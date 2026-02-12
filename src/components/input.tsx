@@ -1,6 +1,11 @@
 import { cn } from '@/lib/utils'
 
-function Input({ className, children, type = 'text', ...props }: React.ComponentProps<'input'>) {
+function Input({
+  className,
+  children,
+  type = 'text',
+  ...props
+}: React.ComponentProps<'input'>) {
   return (
     <input
       type={type}

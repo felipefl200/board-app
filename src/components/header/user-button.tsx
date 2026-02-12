@@ -2,7 +2,12 @@
 
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
 import { ButtonUi } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
 import { authClient } from '@/lib/auth-client'
 import { Loader2Icon, LogInIcon, LogOutIcon } from 'lucide-react'
 
@@ -29,9 +34,13 @@ export function UserButton() {
           <DropdownMenuTrigger asChild>
             <ButtonUi variant="ghost" size="icon" className="rounded-full">
               <Avatar>
-                <AvatarImage src={session.user.image || undefined} alt={session.user.name} />
+                <AvatarImage
+                  src={session.user.image || undefined}
+                  alt={session.user.name}
+                />
                 <AvatarFallback>
-                  {session.user.name.charAt(0).toUpperCase() + session.user.name.split(' ')[1].charAt(0).toUpperCase()}
+                  {session.user.name.charAt(0).toUpperCase() +
+                    session.user.name.split(' ')[1].charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
             </ButtonUi>

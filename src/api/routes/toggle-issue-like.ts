@@ -93,7 +93,9 @@ export const toggleIssueLike = app.openapi(route, async c => {
 
   if (existingLike) {
     // Unlike: remove the like
-    await db.delete(issueLikes).where(and(eq(issueLikes.issueId, id), eq(issueLikes.userId, user!.id)))
+    await db
+      .delete(issueLikes)
+      .where(and(eq(issueLikes.issueId, id), eq(issueLikes.userId, user!.id)))
 
     await db
       .update(issues)

@@ -1,6 +1,11 @@
 import { cn } from '@/lib/utils'
 
-function Button({ className, children, type = 'button', ...props }: React.ComponentProps<'button'>) {
+function Button({
+  className,
+  children,
+  type = 'button',
+  ...props
+}: React.ComponentProps<'button'>) {
   return (
     <button
       type={type}

@@ -1,5 +1,14 @@
 import { sql } from 'drizzle-orm'
-import { boolean, integer, pgEnum, pgSequence, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
+import {
+  boolean,
+  integer,
+  pgEnum,
+  pgSequence,
+  pgTable,
+  text,
+  timestamp,
+  uuid
+} from 'drizzle-orm/pg-core'
 
 export const issueNumberSeq = pgSequence('issue_number_seq', {
   startWith: 0,
@@ -7,7 +16,12 @@ export const issueNumberSeq = pgSequence('issue_number_seq', {
   increment: 1
 })
 
-export const issueStatusEnum = pgEnum('issue_status', ['backlog', 'todo', 'in_progress', 'done'])
+export const issueStatusEnum = pgEnum('issue_status', [
+  'backlog',
+  'todo',
+  'in_progress',
+  'done'
+])
 
 export const issues = pgTable('issues', {
   id: uuid().primaryKey().defaultRandom(),

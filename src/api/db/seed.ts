@@ -55,7 +55,8 @@ async function main() {
 
   // Insert 25 issues
   for (let i = 0; i < 25; i++) {
-    const randomTitle = issueNames[Math.floor(Math.random() * issueNames.length)]
+    const randomTitle =
+      issueNames[Math.floor(Math.random() * issueNames.length)]
     const randomLikes = Math.floor(Math.random() * 21) // 0-20
     const statuses = ['backlog', 'todo', 'in_progress', 'done'] as const
     const randomStatus = statuses[Math.floor(Math.random() * statuses.length)]

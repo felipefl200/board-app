@@ -3,7 +3,12 @@ import { eq } from 'drizzle-orm'
 import { db } from '../db'
 import { comments, issues } from '../db/schema'
 
-export const IssueStatusSchema = z.enum(['backlog', 'todo', 'in_progress', 'done'])
+export const IssueStatusSchema = z.enum([
+  'backlog',
+  'todo',
+  'in_progress',
+  'done'
+])
 
 export const IssueSchema = z.object({
   id: z.uuidv4(),
