@@ -15,15 +15,20 @@ export const metadata: Metadata = {
 const interFont = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
-  children
+  children,
+  modal
 }: Readonly<{
   children: React.ReactNode
+  modal: React.ReactNode
 }>) {
   return (
     <html lang="pt-br" className={interFont.className}>
       <body className="bg-navy-950 text-navy-50 antialiased">
         <ReactQueryProvider>
-          <NuqsAdapter>{children}</NuqsAdapter>
+          <NuqsAdapter>
+            {children}
+            {modal}
+          </NuqsAdapter>
         </ReactQueryProvider>
       </body>
     </html>
