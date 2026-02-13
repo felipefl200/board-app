@@ -1,5 +1,5 @@
 import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi'
-import { and, eq, inArray } from 'drizzle-orm'
+import { and, desc, eq, inArray } from 'drizzle-orm'
 import type { AuthSession } from '../auth'
 import { db } from '../db'
 import { issueLikes, issues } from '../db/schema'
@@ -67,6 +67,7 @@ export const getIssueInteractions = new OpenAPIHono<{
           inArray(issueLikes.issueId, issueIdArray)
         )
       )
+      .orderBy(desc(issueLikes.createdAt))
 
     userLikes = likes.map(like => like.issueId)
   }

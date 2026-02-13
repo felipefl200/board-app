@@ -1,5 +1,5 @@
 import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi'
-import { eq } from 'drizzle-orm'
+import { desc, eq } from 'drizzle-orm'
 import { db } from '../db'
 import { comments, issues } from '../db/schema'
 
@@ -61,7 +61,11 @@ const route = createRoute({
 export const getIssue = new OpenAPIHono().openapi(route, async c => {
   const { id } = c.req.valid('param')
 
-  const [issue] = await db.select().from(issues).where(eq(issues.id, id))
+  const [issue] = await db
+    .select()
+    .from(issues)
+    .where(eq(issues.id, id))
+    .orderBy(desc(issues.createdAt))
 
   if (!issue) {
     return c.json(
