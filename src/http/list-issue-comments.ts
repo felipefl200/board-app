@@ -12,6 +12,11 @@ export async function listIssueComments({ issueId }: ListIssueCommentsProps) {
   )
 
   const response = await fetch(url)
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch issue comments')
+  }
+
   const data = await response.json()
 
   return CommentsListResponseSchema.parse(data)
