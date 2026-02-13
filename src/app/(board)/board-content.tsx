@@ -7,7 +7,7 @@ import { LikeButton } from '@/components/like-button'
 import { Section } from '@/components/section'
 import { getIssueInteractions } from '@/http/get-issue-interactions'
 import { useQuery } from '@tanstack/react-query'
-import { MessageCircleIcon, ThumbsUpIcon } from 'lucide-react'
+import { MessageCircleIcon } from 'lucide-react'
 import { useMemo } from 'react'
 import type z from 'zod'
 
@@ -67,6 +67,7 @@ export default function BoardContent({ issues }: BoardContentProps) {
                   </Card.Header>
                   <Card.Footer>
                     <LikeButton
+                      disabled={interactionsLoading}
                       issueId={issue.id}
                       initialLikesCount={interaction?.likesCount ?? 0}
                       initialLiked={interaction?.isLiked ?? false}
@@ -108,6 +109,7 @@ export default function BoardContent({ issues }: BoardContentProps) {
                   </Card.Header>
                   <Card.Footer>
                     <LikeButton
+                      disabled={interactionsLoading}
                       issueId={issue.id}
                       initialLikesCount={interaction?.likesCount ?? 0}
                       initialLiked={interaction?.isLiked ?? false}
@@ -149,6 +151,7 @@ export default function BoardContent({ issues }: BoardContentProps) {
                   </Card.Header>
                   <Card.Footer>
                     <LikeButton
+                      disabled={interactionsLoading}
                       issueId={issue.id}
                       initialLikesCount={interaction?.likesCount ?? 0}
                       initialLiked={interaction?.isLiked ?? false}
@@ -190,6 +193,7 @@ export default function BoardContent({ issues }: BoardContentProps) {
                   </Card.Header>
                   <Card.Footer>
                     <LikeButton
+                      disabled={interactionsLoading}
                       issueId={issue.id}
                       initialLikesCount={interaction?.likesCount ?? 0}
                       initialLiked={interaction?.isLiked ?? false}
