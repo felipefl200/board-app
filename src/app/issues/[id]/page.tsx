@@ -3,6 +3,8 @@ import { MoveLeftIcon } from 'lucide-react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { IssueDetails } from './issue-details'
+import { Suspense } from 'react'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface IssuePageProps {
   params: Promise<{ id: string }>
@@ -32,7 +34,17 @@ export default async function IssuePage({ params }: IssuePageProps) {
         <span className="text-xs">Voltar para o Board</span>
       </Link>
 
-      <IssueDetails issueId={id} />
+      <Suspense
+        fallback={
+          <div className="space-y-4">
+            <Skeleton className="h-8 w-32" />
+            <Skeleton className="h-6 w-full" />
+            <Skeleton className="h-20 w-full" />
+          </div>
+        }
+      >
+        <IssueDetails issueId={id} />
+      </Suspense>
     </main>
   )
 }
