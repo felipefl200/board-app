@@ -1,8 +1,8 @@
 import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi'
-import { and, desc, eq, inArray } from 'drizzle-orm'
+import { and, count, desc, eq, inArray } from 'drizzle-orm'
 import type { AuthSession } from '../auth'
 import { db } from '../db'
-import { issueLikes, issues } from '../db/schema'
+import { comments, issueLikes, issues } from '../db/schema'
 import { IssueInteractionsResponseSchema } from './schemas/issue-interactions'
 
 const route = createRoute({
@@ -46,14 +46,17 @@ export const getIssueInteractions = new OpenAPIHono<{
     return c.json({ interactions: [] }, 200)
   }
 
-  // Get likes count for each issue
+  // Get likes and comments count for each issue
   const issuesData = await db
     .select({
       id: issues.id,
-      likes: issues.likes
+      likes: issues.likes,
+      comments: count(comments.id)
     })
     .from(issues)
+    .leftJoin(comments, eq(issues.id, comments.issueId))
     .where(inArray(issues.id, issueIdArray))
+    .groupBy(issues.id, issues.likes)
 
   // If user is authenticated, get their likes
   let userLikes: string[] = []
@@ -75,7 +78,8 @@ export const getIssueInteractions = new OpenAPIHono<{
   const interactions = issuesData.map(issue => ({
     issueId: issue.id,
     isLiked: userLikes.includes(issue.id),
-    likesCount: issue.likes
+    likesCount: issue.likes,
+    commentsCount: issue.comments
   }))
 
   return c.json({ interactions }, 200)

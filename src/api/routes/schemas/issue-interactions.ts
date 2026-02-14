@@ -3,7 +3,8 @@ import { z } from 'zod'
 export const IssueInteractionSchema = z.object({
   issueId: z.string().uuid(),
   isLiked: z.boolean(),
-  likesCount: z.number().int()
+  likesCount: z.number().int(),
+  commentsCount: z.number().int()
 })
 
 export const IssueInteractionsResponseSchema = z.object({

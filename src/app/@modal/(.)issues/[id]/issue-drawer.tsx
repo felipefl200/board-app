@@ -23,7 +23,6 @@ export function IssueDrawer({ children }: IssueDrawerProps) {
       onOpenChange={handleOpenChange}
       handleOnly
       noBodyStyles
-      className="overflow-y-auto"
     >
       {children}
     </Drawer>
